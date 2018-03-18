@@ -95,11 +95,11 @@ app.get('/exit', (req, res) => {
  */
 app.route('/*')
     .all((req, res, next) => {
-        logger.info(__filename + ':98', req.path);
+        logger.info(__filename + ':98', req.originalUrl);
         next();
     })
     .get((req, res) => {
-        request.get({url: config.API_BASE_URL + req.path}, (err, resp, body) => {
+        request.get({url: config.API_BASE_URL + req.originalUrl}, (err, resp, body) => {
             if (!err && resp.statusCode === 200) {
                 let respJson = JSON.parse(body);
                 if (respJson.code === config.HTTP_SUCCESS) {

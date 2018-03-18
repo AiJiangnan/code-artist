@@ -3,9 +3,9 @@ package code.artist.core.service.base;
 import code.artist.common.base.BaseMapper;
 import code.artist.common.base.BaseModel;
 import code.artist.common.base.IBaseService;
+import code.artist.core.base.PageInfo;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
