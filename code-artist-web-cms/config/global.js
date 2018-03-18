@@ -1,7 +1,7 @@
 /**
  * 配置文件
  */
-var constants = {
+const constants = {
     /**
      * 后台接口根地址
      */
@@ -9,11 +9,11 @@ var constants = {
     /**
      * 接口请求成功
      */
-    "HTTP_SUCCESS": "0",
+    "HTTP_SUCCESS": 0,
     /**
      * 接口请求失败
      */
-    "HTTP_ERROR": "1",
-}
+    "HTTP_ERROR": 1
+};
 
 module.exports = constants;

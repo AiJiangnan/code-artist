@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Code Artist</title>
+    <link rel="stylesheet" href="../js/layui/css/layui.css">
+</head>
+
+<body>
+<div class="layui-container" style="width:350px;margin-top:200px;">
+    <form class="layui-form" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label" for="u">用户名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" required lay-verify="required" class="layui-input" id="u">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" for="p">密　码：</label>
+            <div class="layui-input-block">
+                <input type="password" name="password" required lay-verify="required" class="layui-input" id="p">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="loginForm" style="width:100%;">登录</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="../js/layui/layui.js"></script>
+<script>
+    layui.use('form', () => {
+        const [$, form] = [layui.jquery, layui.form];
+        form.on('submit(loginForm)', formData => {
+            $.post('login', formData.field, data => {
+                if (data === 0) {
+                    location = "main.html";
+                } else {
+                    layer.msg(data, {icon: 5});
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -11,7 +11,7 @@ gulp.task('default', () => {
 gulp.task('minifycss', () => {
     const path = 'css/easyui';
     return gulp.src(path + '/*.css') //设置css
-        .pipe(rename({ suffix: '.min' })) //修改文件名
+        .pipe(rename({suffix: '.min'})) //修改文件名
         .pipe(minifycss()) //压缩文件
         .pipe(gulp.dest(path)); //输出文件目录
 });
@@ -20,7 +20,7 @@ gulp.task('minifycss', () => {
 gulp.task('minifyjs', () => {
     const path = 'js/easyui';
     return gulp.src(path + '/*.js') //选择合并的JS
-        .pipe(rename({ suffix: '.min' })) //重命名
+        .pipe(rename({suffix: '.min'})) //重命名
         .pipe(uglify()) //压缩
         .pipe(gulp.dest(path)); //输出 
 });
