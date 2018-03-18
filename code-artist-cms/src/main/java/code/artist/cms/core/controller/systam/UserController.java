@@ -99,13 +99,13 @@ public class UserController {
     /**
      * 查询所有管理员
      *
-     * @param pageNum  页码
-     * @param pageSize 每页大小
+     * @param page  页码
+     * @param limit 每页大小
      * @return 返回结果
      */
-    @RequestMapping(value = "{pageNum}/{pageSize}", method = RequestMethod.GET)
-    public RestResponse showUserPage(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize) {
-        String userPage = userService.selectEntityPage(pageNum, pageSize);
+    @RequestMapping(method = RequestMethod.GET)
+    public RestResponse showUserPage(int page, int limit) {
+        String userPage = userService.selectEntityPage(page, limit);
         if (!StringUtils.isEmpty(userPage)) {
             return new RestResponse(userPage);
         } else {

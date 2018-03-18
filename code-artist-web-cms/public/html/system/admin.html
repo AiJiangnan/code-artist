@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="../../js/layui/css/layui.css">
 </head>
 <body>
-admin
+<table id="admin" lay-filter="admin" style="margin:0;position:absolute;width:100%;height:100%;border:0;"></table>
+<script src="../../js/layui/layui.js"></script>
+<script>
+    layui.use('table', () => {
+        layui.table.render({
+            elem: '#admin',
+            height: 'full-5',
+            page: true,
+            url: '/user',
+            cols: [[
+                {field: 'username', title: '用户名', width: 80},
+                {field: 'realname', title: '姓名', width: 80, sort: true},
+                {field: 'phone', title: '手机号码', width: 80, sort: true},
+                {field: 'address', title: '地址', width: 80, sort: true},
+                {field: 'isAdmin', title: '是否为管理员', width: 80, sort: true}
+            ]]
+        });
+
+    });
+</script>
 </body>
 </html>
