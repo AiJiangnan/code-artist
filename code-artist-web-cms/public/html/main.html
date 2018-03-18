@@ -23,16 +23,16 @@
         </ul>
     </div>
     <!-- Side -->
-    <div class="layui-side layui-bg-black" lay-accordion>
+    <div class="layui-side layui-bg-black">
         <div id="menu-view" class="layui-side-scroll">
             <script id="menu" type="text/html">
-                <ul class="layui-nav layui-nav-tree">
-                    {{# layui.each(d, (index, pmenu) => { }}
+                <ul class="layui-nav layui-nav-tree" lay-filter="menu">
+                    {{# layui.each(d, (i, p) => { }}
                     <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:void(0);">{{ pmenu.name }}</a>
+                        <a href="javascript:void(0);">{{ p.name }}</a>
                         <dl class="layui-nav-child">
-                            {{# layui.each(pmenu.children, function(index, menu){ }}
-                            <dd><a href="javascript:void(0);">{{ menu.name }}</a></dd>
+                            {{# layui.each(p.children, (i, m) => { }}
+                            <dd id="{{ m.id }}" data="{{ m.url }}"><a href="javascript:void(0);">{{ m.name }}</a></dd>
                             {{# }); }}
                         </dl>
                     </li>
@@ -43,7 +43,25 @@
     </div>
     <!-- Body -->
     <div class="layui-body">
-        <div style="padding: 15px;">内容主体区域</div>
+        <div class="layui-tab layui-tab-card" lay-filter="tab" style="margin:0;position:absolute;width:100%;height:100%;border:0;">
+            <ul class="layui-tab-title">
+                <li class="layui-this"><i class="layui-icon">&#xe68e;</i> 主页</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div style="padding:15px;">
+                        <h2>开发成员</h2>
+                        <ul style="padding: 10px;">
+                            <li style="padding:5px;"><i class="layui-icon">&#xe60c;</i> 艾江南</li>
+                            <li style="padding:5px;"><i class="layui-icon">&#xe60c;</i> 杜亦臻</li>
+                            <li style="padding:5px;"><i class="layui-icon">&#xe69c;</i> 王龙</li>
+                            <li style="padding:5px;"><i class="layui-icon">&#xe60c;</i> 任垚宇</li>
+                            <li style="padding:5px;"><i class="layui-icon">&#xe60c;</i> 刘道云</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Footer -->
     <div class="layui-footer" style="text-align:center">
