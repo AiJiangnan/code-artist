@@ -32,20 +32,12 @@
         ORDER BY m.sort
     </select>
 
-    <resultMap id="menuMap" type="Menu" >
-        <id column="id" property="id" />
-        <collection property="children" select="selChildrenByParentId" column="id"></collection>
-    </resultMap>
-
     <insert id="insEntity" parameterType="Menu">
         INSERT INTO t_menu (<include refid="menuList"></include>) VALUES (#{id},#{name},#{url},#{sort},#{isLeaf},#{parentId},1,#{createUser},#{createTime},#{updateUser},#{updateTime},#{description})
     </insert>
 
-    <select id="selEntityList" resultMap="menuMap">
-        SELECT <include refid="menuList"></include> FROM t_menu WHERE status=1 AND is_leaf=0 ORDER BY sort
-    </select>
-    <select id="selChildrenByParentId" resultMap="menuMap">
-        SELECT <include refid="menuList"></include> FROM t_menu WHERE status=1 AND is_leaf=1 AND parent_id=#{id} ORDER BY sort
+    <select id="selEntityList" resultType="Menu">
+        SELECT <include refid="menuList"></include> FROM t_menu WHERE status=1 ORDER BY sort
     </select>
     <select id="selRoleMenuByRoleId" resultType="java.lang.Integer">
         SELECT menu_id AS id FROM t_role_menu WHERE role_id=#{roleId}

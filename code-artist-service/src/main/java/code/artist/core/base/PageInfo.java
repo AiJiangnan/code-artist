@@ -1,13 +1,16 @@
 package code.artist.core.base;
 
+import com.github.pagehelper.Page;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * 分页
+ * 分页包装类
  *
  * @author 艾江南
  */
-public class PageInfo<T> extends com.github.pagehelper.PageInfo<T> {
+public class PageInfo<T> implements Serializable {
 
     private int code;
     private String msg;
@@ -15,11 +18,13 @@ public class PageInfo<T> extends com.github.pagehelper.PageInfo<T> {
     private List<T> data;
 
     public PageInfo(List<T> list) {
-        super(list);
         this.code = 0;
         this.msg = "success";
-        this.count = super.getTotal();
-        this.data = super.getList();
+        if (list instanceof Page) {
+            Page page = (Page) list;
+            this.count = page.getTotal();
+            this.data = page;
+        }
     }
 
     public int getCode() {
@@ -53,4 +58,5 @@ public class PageInfo<T> extends com.github.pagehelper.PageInfo<T> {
     public void setData(List<T> data) {
         this.data = data;
     }
+
 }

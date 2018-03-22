@@ -58,14 +58,13 @@ public class RoleController {
     /**
      * 查询所有角色
      *
-     * @param pageNum  页码
-     * @param pageSize 每页大小
+     * @param page  页码
+     * @param limit 每页大小
      * @return 返回结果
      */
-    @RequestMapping(value = "{pageNum}/{pageSize}", method = RequestMethod.GET)
-    public RestResponse showRole(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer
-            pageSize) {
-        String rolePage = roleService.selectEntityPage(pageNum, pageSize);
+    @RequestMapping(value = "page", method = RequestMethod.GET)
+    public RestResponse showRole(int page, int limit) {
+        String rolePage = roleService.selectEntityPage(page, limit);
         if (!StringUtils.isEmpty(rolePage)) {
             return new RestResponse(rolePage);
         } else {

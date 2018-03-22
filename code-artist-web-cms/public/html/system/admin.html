@@ -10,15 +10,17 @@
 <table id="admin" lay-filter="admin"></table>
 <script src="../../js/layui/layui.js"></script>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <div class="layui-btn-group">
+        <a class="layui-btn" lay-event="detail">新增</a>
+        <a class="layui-btn" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger" lay-event="del">删除</a>
+    </div>
 </script>
 <script>
     layui.use('table', () => {
         layui.table.render({
             elem: '#admin',
-            height: 'full-1',
+            height: 'full-5',
             page: true,
             url: '/user',
             cols: [[
@@ -26,9 +28,14 @@
                 {type: 'numbers', title: '序号'},
                 {field: 'username', title: '用户名', width: 80},
                 {field: 'realname', title: '姓名', width: 80},
-                {field: 'phone', title: '手机号码', width: 100},
+                {field: 'phone', title: '手机号码', width: 120},
                 {field: 'address', title: '地址', width: 80},
-                {field: 'isAdmin', title: '是否为管理员', width: 130, align: 'center', sort: true, templet: d => d.isAdmin ? '否' : '是'}
+                {field: 'isAdmin', title: '是否为管理员', width: 130, align: 'center', sort: true, templet: d => d.isAdmin ? '否' : '是'},
+                {
+                    title: '操作', width: 120, align: 'center', templet: d => {
+                        return '<button class="layui-btn layui-btn-sm">分配角色</button>';
+                    }
+                }
             ]],
             toolbar: '#barDemo'
         });
